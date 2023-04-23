@@ -2,15 +2,15 @@
 /**
  * _printf - Printf function
  * @format: format.
- *
  * Return: Printed chars.
  */
-
 int _printf(const char *format, ...)
 {
 int count = 0;
 va_list list;
 va_start(list, format);
+if (format == NULL)
+return (-1);
 while (*format != '\0')
 {
 if (*format == '%')
