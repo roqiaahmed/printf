@@ -8,16 +8,8 @@
 int print_char(va_list list)
 {
 char c = (char)va_arg(list, int);
-if (c == NULL)
-{
-write(1, "(null)", 6);
-return (6);
-}
-else
-{
 write(1, &c, sizeof(char));
 return (1);
-}
 }
 /**
  * print_string - prints a string to stdout
@@ -73,8 +65,6 @@ char c = '%';
 write(1, &c, sizeof(char));
 count++;
 }
-else if (*format == '\0')
-return (-1);
 }
 else
 {
