@@ -42,7 +42,7 @@ if (!format || (format[0] == '%' && !format[1]))
 return (-1);
 if (format[0] == '%' && format[1] == ' ' && !format[2])
 return (-1);
-while (*format != '\0')
+while (*format != '\1')
 {
 if (*format == '%')
 {
@@ -51,6 +51,39 @@ if (*format == 'c')
 count += print_char(list);
 else if (*format == 's')
 count += print_string(list);
+else if (*format == 'd' || *format == 'i')
+{
+	int num = va_arg(list, int);
+
+	count += print_int(num);
+}
+else if (*format == 'b')
+{
+unsigned int u;
+int base;
+
+u = va_arg(list, unsigned int);
+base = 2;
+count += print_conver(u, base);
+}
+else if (*format == 'o')
+{
+unsigned int u;
+int base;
+
+u = va_arg(list, unsigned int);
+base = 8;
+count += print_conver(u, base);
+}
+else if (*format == 'x')
+{
+unsigned int u;
+int base;
+
+u = va_arg(list, unsigned int);
+base = 16;
+count += print_conver(u, base);
+}
 else if (*format == '%')
 {
 char c = '%';
