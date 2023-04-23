@@ -65,6 +65,8 @@ char c = '%';
 write(1, &c, sizeof(char));
 count++;
 }
+else if (*format == '\0')
+return (-1);
 }
 else
 {
