@@ -8,8 +8,16 @@
 int print_char(va_list list)
 {
 char c = (char)va_arg(list, int);
+if (c == NULL)
+{
+write(1, "(null)", 6);
+return (6);
+}
+else
+{
 write(1, &c, sizeof(char));
 return (1);
+}
 }
 /**
  * print_string - prints a string to stdout
@@ -20,11 +28,19 @@ return (1);
 int print_string(va_list list)
 {
 char *s = va_arg(list, char *);
+if (s == NULL)
+{
+write(1, "(null)", 6);
+return (6);
+}
+else
+{
 int len = 0;
 while (s[len] != '\0')
 len++;
 write(1, s, len);
 return (len);
+}
 }
 /**
  * _printf - Printf function
@@ -57,6 +73,8 @@ char c = '%';
 write(1, &c, sizeof(char));
 count++;
 }
+else if (*format == '\0')
+return (-1);
 }
 else
 {
