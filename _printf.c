@@ -1,5 +1,32 @@
 #include "main.h"
 /**
+ * print_char - prints a character to stdout
+ * @list: a va_list of arguments
+ *
+ * Return: the number of characters printed
+ */
+int print_char(va_list list)
+{
+char c = (char)va_arg(list, int);
+write(1, &c, sizeof(char));
+return (1);
+}
+/**
+ * print_string - prints a string to stdout
+ * @list: a va_list of arguments
+ *
+ * Return: the number of characters printed
+ */
+int print_string(va_list list)
+{
+char *s = va_arg(list, char *);
+int len = 0;
+while (s[len] != '\0')
+len++;
+write(1, s, len);
+return (len);
+}
+/**
  * _printf - Printf function
  * @format: format.
  * Return: Printed chars.
@@ -21,20 +48,9 @@ if (*format == '%')
 {
 format++;
 if (*format == 'c')
-{
-char c = (char) va_arg(list, int);
-write(1, &c, sizeof(char));
-count++;
-}
+count += print_char(list);
 else if (*format == 's')
-{
-char *s = va_arg(list, char *);
-int len = 0;
-while (s[len] != '\0')
-len++;
-write(1, s, len);
-count += len;
-}
+count += print_string(list);
 else if (*format == '%')
 {
 char c = '%';
