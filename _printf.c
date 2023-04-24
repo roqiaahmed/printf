@@ -57,14 +57,12 @@ count += print_char(list);
 else if (format[0] == 's')
 count += print_string(list);
 else if (format[0] == 'd' || format[0] == 'i' || format[0] == 'u')
-{
 count += print_int(va_arg(list, int), format[0]);
-}
 else if (format[0] == 'b' || format[0] == 'o' || format[0] == 'x'
 		|| format[0] == 'X')
-{
 count += print_conver(va_arg(list, unsigned int), *format);
-}
+else if (format[0] == ' ')
+	return (-1);
 else if (format[0] == '%')
 {
 char c = '%';
