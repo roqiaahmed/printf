@@ -44,62 +44,33 @@ int _printf(const char *format, ...)
 int count = 0;
 va_list list;
 va_start(list, format);
-if (format == NULL)
-return (-1);
-if (!format || (format[0] == '%' && !format[1]))
-return (-1);
-if (format[0] == '%' && format[1] == ' ' && !format[2])
+if (format == NULL || (format[0] == '%' && !format[1])
+		|| (format[0] == '%' && format[1] == ' ' && !format[2]))
 return (-1);
 while (*format != '\0')
 {
-if (*format == '%')
+if (format[0] == '%')
 {
 format++;
-if (*format == 'c')
+if (format[0] == 'c')
 count += print_char(list);
-else if (*format == 's')
+else if (format[0] == 's')
 count += print_string(list);
-else if (*format == 'd' || *format == 'i')
+else if (format[0] == 'd' || format[0] == 'i')
 {
-	int num = va_arg(list, int);
-
-	count += print_int(num);
+count += print_int(va_arg(list, int));
 }
-else if (*format == 'b')
+else if (format[0] == 'b' || format[0] == 'o' || format[0] == 'x'
+		|| format[0] == 'X')
 {
-unsigned int u;
-int base;
-
-u = va_arg(list, unsigned int);
-base = 2;
-count += print_conver(u, base);
+count += print_conver(va_arg(list, unsigned int), *format);
 }
-else if (*format == 'o')
-{
-unsigned int u;
-int base;
-
-u = va_arg(list, unsigned int);
-base = 8;
-count += print_conver(u, base);
-}
-else if (*format == 'x')
-{
-unsigned int u;
-int base;
-
-u = va_arg(list, unsigned int);
-base = 16;
-count += print_conver(u, base);
-}
-else if (*format == '%')
+else if (format[0] == '%')
 {
 char c = '%';
 write(1, &c, sizeof(char));
 count++;
 }
-else if (*format == '\0')
-return (-1);
 }
 else
 {
