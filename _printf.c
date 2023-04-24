@@ -61,13 +61,18 @@ count += print_int(va_arg(list, int), format[0]);
 else if (format[0] == 'b' || format[0] == 'o' || format[0] == 'x'
 		|| format[0] == 'X')
 count += print_conver(va_arg(list, unsigned int), *format);
-else if (format[0] == ' ')
-	return (-1);
 else if (format[0] == '%')
 {
 char c = '%';
 write(1, &c, sizeof(char));
 count++;
+}
+else
+{
+// unrecognized formatting specifier
+write(1, "%", sizeof(char));
+write(1, format, sizeof(char));
+count += 2;
 }
 }
 else
