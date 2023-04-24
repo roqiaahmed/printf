@@ -21,11 +21,22 @@ case 'o':
 base = 8;
 break;
 case 'x':
+digits = "0123456789abcdef";
 base = 16;
 break;
 case 'X':
 digits = "0123456789ABCDEF";
 base = 16;
+break;
+case 'u':
+base = 10;
+break;
+case 'p':
+digits = "0123456789abcdef";
+base = 16;
+break;
+default:
+base = 10;
 break;
 }
 if (n == 0)

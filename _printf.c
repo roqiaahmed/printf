@@ -1,3 +1,4 @@
+#include <string.h>
 #include "main.h"
 /**
  * print_char - prints a character to stdout
@@ -35,6 +36,23 @@ return (len);
 }
 }
 /**
+ * reverse_string - reverse_string
+ * @s:string
+ *
+ * Return: reverse_string
+ */
+void reverse_string(char *s)
+{
+int i, j;
+char temp;
+for (i = 0, j = strlen(s) - 1; i < j; i++, j--)
+{
+temp = s[i];
+s[i] = s[j];
+s[j] = temp;
+}
+}
+/**
  * _printf - Printf function
  * @format: format.
  * Return: Printed chars.
@@ -56,18 +74,22 @@ if (format[0] == 'c')
 count += print_char(list);
 else if (format[0] == 's')
 count += print_string(list);
-else if (format[0] == 'd' || format[0] == 'i' || format[0] == 'u')
+else if (format[0] == 'd' || format[0] == 'i')
 count += print_int(va_arg(list, int), format[0]);
 else if (format[0] == 'b' || format[0] == 'o' || format[0] == 'x'
-		|| format[0] == 'X')
+	|| format[0] == 'X' || format[0] == 'u' || format[0] == 'p')
 count += print_conver(va_arg(list, unsigned int), *format);
-else if (format[0] == ' ')
-return (-1);
 else if (format[0] == '%')
 {
 char c = '%';
 write(1, &c, sizeof(char));
 count++;
+}
+else if (format[0] == 'r')
+{
+char *s = va_arg(list, char *);
+reverse_string(s);
+count += print_string(list);
 }
 }
 else
