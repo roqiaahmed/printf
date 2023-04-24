@@ -8,6 +8,9 @@
 int print_conver(unsigned int n, char c)
 {
 char *digits = "0123456789abcdef";
+char buff[100];
+int count = 0;
+int i = 0;
 int base;
 switch (c)
 {
@@ -25,9 +28,6 @@ digits = "0123456789ABCDEF";
 base = 16;
 break;
 }
-char buffer[100];
-int count = 0;
-int i = 0;
 if (n == 0)
 {
 print_char_system('0');
@@ -36,12 +36,12 @@ return (count);
 }
 while (n > 0)
 {
-buffer[i++] = digits[n % base];
+buff[i++] = digits[n % base];
 n /= base;
 }
 while (--i >= 0)
 {
-print_char_system(buffer[i]);
+print_char_system(buff[i]);
 count++;
 }
 return (count);

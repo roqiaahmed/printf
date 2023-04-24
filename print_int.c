@@ -20,6 +20,7 @@ int print_int(int num)
 char buffer[12];
 int i = 0;
 int is_negative = 0;
+int num_chars_printed;
 
 /* Check if the number is negative*/
 if (num < 0)
@@ -37,7 +38,7 @@ if (is_negative)
 {
 buffer[i++] = '-';
 }
-int num_chars_printed = i - 1;
+num_chars_printed = i - 1;
 while (i > 0)
 {
 print_char_system(buffer[--i]);
