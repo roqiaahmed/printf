@@ -11,7 +11,7 @@ int print_char(va_list list)
     return (1);
 }
 
-int print_int(int num)
+int print_int(int num, char c)
 {
     char buffer[12];
     int i = 0;
