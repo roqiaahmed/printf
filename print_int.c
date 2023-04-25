@@ -1,26 +1,14 @@
 #include "main.h"
+/**
+ * print_char_system - print character
+ * @c: the input
+ * Return: no return value
+ */
+
 void print_char_system(char c)
 {
-    write(1, &c, 1);
+write(1, &c, sizeof(char));
 }
-
-// int print_char(va_list list)
-// {
-//     char c = va_arg(list, int);
-//     print_char_system(c);
-//     return (1);
-// }
-
-// /**
-//  * print_char_system - print character
-//  * @c: the input
-//  * Return: no return value
-//  */
-
-// void print_char_system(char c)
-// {
-// write(1, &c, sizeof(char));
-// }
 
 /**
  * print_int - function for printing intgers
@@ -36,7 +24,7 @@ int is_negative = 0;
 int num_chars_printed;
 
 /* Check if the number is negative*/
-if (num < 0 || c != 'u')
+if (num < 0 && c != 'u')
 {
 is_negative = 1;
 num = -num;
