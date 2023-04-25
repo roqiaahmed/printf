@@ -16,7 +16,6 @@ The available convertion specifiers are:
 + %u: Prints unsigned integers
 + %x: Prints the hexadecial representation of an unsigned decimal in lowercase letters
 + %X:Prints the hexadecial representation of an unsigned decimal in uppercase letters
-+ %r: Prints a reversed string
 
 ## Usage
 + All the files are to be compiled on Ubuntu 14.04 LTS
