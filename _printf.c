@@ -75,7 +75,7 @@ count += print_char(list);
 else if (format[0] == 's')
 count += print_string(list);
 else if (format[0] == 'd' || format[0] == 'i')
-count += print_int(list);
+count += print_int(va_arg(list, int), format[0]);
 else if (format[0] == 'b' || format[0] == 'o' || format[0] == 'x'
 	|| format[0] == 'X' || format[0] == 'u' || format[0] == 'p')
 count += print_conver(va_arg(list, unsigned int), *format);
