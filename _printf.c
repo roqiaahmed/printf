@@ -59,46 +59,46 @@ s[j] = temp;
  */
 int _printf(const char *format, ...)
 {
-    int count = 0;
-    va_list list;
-    va_start(list, format);
-    if (format == NULL || (format[0] == '%' && !format[1])
-            || (format[0] == '%' && format[1] == ' ' && !format[2]))
-        return (-1);
-    while (*format != '\0')
-    {
-        if (format[0] == '%')
-        {
-            format++;
-            if (format[0] == 'c')
-                count += print_char(list);
-            else if (format[0] == 's')
-                count += print_string(list);
-            else if (format[0] == 'd' || format[0] == 'i')
-                count += print_int(va_arg(list, int), format[-1]);
-            else if (format[0] == 'b' || format[0] == 'o' || format[0] == 'x'
-                    || format[0] == 'X' || format[0] == 'u' || format[0] == 'p')
-                count += print_conver(va_arg(list, unsigned int), *format);
-            else if (format[0] == '%')
-            {
-                char c = '%';
-                write(1, &c, sizeof(char));
-                count++;
-            }
-            else if (format[0] == 'r')
-            {
-                char *s = va_arg(list, char *);
-                reverse_string(s);
-                count += print_string(list);
-            }
-        }
-        else
-        {
-            write(1, format, sizeof(char));
-            count++;
-        }
-        format++;
-    }
-    va_end(list);
-    return (count);
+int count = 0;
+va_list list;
+va_start(list, format);
+if (format == NULL || (format[0] == '%' && !format[1])
+		|| (format[0] == '%' && format[1] == ' ' && !format[2]))
+return (-1);
+while (*format != '\0')
+{
+if (format[0] == '%')
+{
+format++;
+if (format[0] == 'c')
+count += print_char(list);
+else if (format[0] == 's')
+count += print_string(list);
+else if (format[0] == 'd' || format[0] == 'i')
+count += print_int(va_arg(list, int));
+else if (format[0] == 'b' || format[0] == 'o' || format[0] == 'x'
+	|| format[0] == 'X' || format[0] == 'u' || format[0] == 'p')
+count += print_conver(va_arg(list, unsigned int), *format);
+else if (format[0] == '%')
+{
+char c = '%';
+write(1, &c, sizeof(char));
+count++;
+}
+else if (format[0] == 'r')
+{
+char *s = va_arg(list, char *);
+reverse_string(s);
+count += print_string(list);
+}
+}
+else
+{
+write(1, format, sizeof(char));
+count++;
+}
+format++;
+}
+va_end(list);
+return (count);
 }
