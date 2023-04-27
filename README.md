@@ -13,7 +13,7 @@ The available convertion specifiers are:
 + %d: Prints integers.
 + %i: Prints integers.
 + %b: Prints the binary representation of an unsigned decimal.
-ALSO : we handle the hexadecimal
+ALSO : we handle the hexadecimal in two 
 + %x: Prints the hexadecial representation of an unsigned decimal in lowercase letters
 + %X:Prints the hexadecial representation of an unsigned decimal in uppercase letters
 
