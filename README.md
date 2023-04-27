@@ -16,6 +16,7 @@ The available convertion specifiers are:
 ALSO : we handle the hexadecimal in two styles as shown belw
 + %x: Prints the hexadecial representation of an unsigned decimal in lowercase letters
 + %X:Prints the hexadecial representation of an unsigned decimal in uppercase letters
+NOTE: this is only avaliable for heacadecim
 
 ## Usage
 + All the files are to be compiled on Ubuntu 14.04 LTS
